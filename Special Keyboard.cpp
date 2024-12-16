@@ -41,18 +41,16 @@ using namespace std;
 vector<long long int> memo;
 long long int findAll(int N) {
     if (N <= 6) return N;
-    if (memo.size() <= N) {
-        memo.resize(N + 1, -1);
-    }
+    if (memo.size() <= N) memo.resize(N + 1, -1);
 
     if (memo[N] != -1) return memo[N];
 
     long long int o1, o2, o3; //options
     
-                             //ctrl
-    o1 = 2 * findAll(N - 3); //acv
-    o2 = 3 * findAll(N - 4); //acv,v
-    o3 = 4 * findAll(N - 5); //acvv,v
+                              // ctrl
+    o1 = 2 * findAll(N - 3);  // acv
+    o2 = 3 * findAll(N - 4);  // acv,v
+    o3 = 4 * findAll(N - 5);  // acvv,v
     memo[N] = max({o1, o2, o3});
     return memo[N];
 }
